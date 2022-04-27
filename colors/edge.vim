@@ -1,26 +1,26 @@
 " -----------------------------------------------------------------------------
-" Name:         Edge
+" Name:         edge-neo
 " Description:  Clean & Elegant Color Scheme inspired by Atom One and Material
 " Author:       Sainnhepark <sainnhe@gmail.com>
-" Website:      https://github.com/sainnhe/edge/
+" Website:      https://github.com/sainnhe/edge-neo/
 " License:      MIT && Anti-996
 " -----------------------------------------------------------------------------
 
 " Initialization: {{{
-let s:configuration = edge#get_configuration()
-let s:palette = edge#get_palette(s:configuration.style)
+let s:configuration = edge-neo#get_configuration()
+let s:palette = edge-neo#get_palette(s:configuration.style)
 let s:path = expand('<sfile>:p') " the path of this script
 let s:last_modified = 'Mon Apr  4 01:47:34 UTC 2022'
-let g:edge_loaded_file_types = []
+let g:edge-neo_loaded_file_types = []
 
-if !(exists('g:colors_name') && g:colors_name ==# 'edge' && s:configuration.better_performance)
+if !(exists('g:colors_name') && g:colors_name ==# 'edge-neo' && s:configuration.better_performance)
   highlight clear
   if exists('syntax_on')
     syntax reset
   endif
 endif
 
-let g:colors_name = 'edge'
+let g:colors_name = 'edge-neo'
 
 if !(has('termguicolors') && &termguicolors) && !has('gui_running') && &t_Co != 256
   finish
@@ -29,110 +29,110 @@ endif
 " Common Highlight Groups: {{{
 " UI: {{{
 if s:configuration.transparent_background
-  call edge#highlight('Normal', s:palette.fg, s:palette.none)
-  call edge#highlight('Terminal', s:palette.fg, s:palette.none)
+  call edge-neo#highlight('Normal', s:palette.fg, s:palette.none)
+  call edge-neo#highlight('Terminal', s:palette.fg, s:palette.none)
   if s:configuration.show_eob
-    call edge#highlight('EndOfBuffer', s:palette.bg4, s:palette.none)
+    call edge-neo#highlight('EndOfBuffer', s:palette.bg4, s:palette.none)
   else
-    call edge#highlight('EndOfBuffer', s:palette.bg0, s:palette.none)
+    call edge-neo#highlight('EndOfBuffer', s:palette.bg0, s:palette.none)
   endif
-  call edge#highlight('Folded', s:palette.grey, s:palette.none)
-  call edge#highlight('ToolbarLine', s:palette.fg, s:palette.none)
-  call edge#highlight('SignColumn', s:palette.fg, s:palette.none)
-  call edge#highlight('FoldColumn', s:palette.grey_dim, s:palette.none)
+  call edge-neo#highlight('Folded', s:palette.grey, s:palette.none)
+  call edge-neo#highlight('ToolbarLine', s:palette.fg, s:palette.none)
+  call edge-neo#highlight('SignColumn', s:palette.fg, s:palette.none)
+  call edge-neo#highlight('FoldColumn', s:palette.grey_dim, s:palette.none)
 else
-  call edge#highlight('Normal', s:palette.fg, s:palette.bg0)
-  call edge#highlight('Terminal', s:palette.fg, s:palette.bg0)
+  call edge-neo#highlight('Normal', s:palette.fg, s:palette.bg0)
+  call edge-neo#highlight('Terminal', s:palette.fg, s:palette.bg0)
   if s:configuration.show_eob
-    call edge#highlight('EndOfBuffer', s:palette.bg4, s:palette.bg0)
+    call edge-neo#highlight('EndOfBuffer', s:palette.bg4, s:palette.bg0)
   else
-    call edge#highlight('EndOfBuffer', s:palette.bg0, s:palette.bg0)
+    call edge-neo#highlight('EndOfBuffer', s:palette.bg0, s:palette.bg0)
   endif
-  call edge#highlight('Folded', s:palette.grey, s:palette.bg1)
-  call edge#highlight('ToolbarLine', s:palette.fg, s:palette.bg2)
+  call edge-neo#highlight('Folded', s:palette.grey, s:palette.bg1)
+  call edge-neo#highlight('ToolbarLine', s:palette.fg, s:palette.bg2)
 endif
-call edge#highlight('SignColumn', s:palette.fg, s:palette.none)
-call edge#highlight('FoldColumn', s:palette.grey_dim, s:palette.none)
-call edge#highlight('IncSearch', s:palette.bg0, s:palette.bg_blue)
-call edge#highlight('Search', s:palette.bg0, s:palette.bg_green)
-call edge#highlight('ColorColumn', s:palette.none, s:palette.bg1)
-call edge#highlight('Conceal', s:palette.grey_dim, s:palette.none)
+call edge-neo#highlight('SignColumn', s:palette.fg, s:palette.none)
+call edge-neo#highlight('FoldColumn', s:palette.grey_dim, s:palette.none)
+call edge-neo#highlight('IncSearch', s:palette.bg0, s:palette.bg_blue)
+call edge-neo#highlight('Search', s:palette.bg0, s:palette.bg_green)
+call edge-neo#highlight('ColorColumn', s:palette.none, s:palette.bg1)
+call edge-neo#highlight('Conceal', s:palette.grey_dim, s:palette.none)
 if s:configuration.cursor ==# 'auto'
-  call edge#highlight('Cursor', s:palette.none, s:palette.none, 'reverse')
+  call edge-neo#highlight('Cursor', s:palette.none, s:palette.none, 'reverse')
 else
-  call edge#highlight('Cursor', s:palette.bg0, s:palette[s:configuration.cursor])
+  call edge-neo#highlight('Cursor', s:palette.bg0, s:palette[s:configuration.cursor])
 endif
 highlight! link vCursor Cursor
 highlight! link iCursor Cursor
 highlight! link lCursor Cursor
 highlight! link CursorIM Cursor
 if &diff
-  call edge#highlight('CursorLine', s:palette.none, s:palette.none, 'underline')
-  call edge#highlight('CursorColumn', s:palette.none, s:palette.none, 'bold')
+  call edge-neo#highlight('CursorLine', s:palette.none, s:palette.none, 'underline')
+  call edge-neo#highlight('CursorColumn', s:palette.none, s:palette.none, 'bold')
 else
-  call edge#highlight('CursorLine', s:palette.none, s:palette.bg1)
-  call edge#highlight('CursorColumn', s:palette.none, s:palette.bg1)
+  call edge-neo#highlight('CursorLine', s:palette.none, s:palette.bg1)
+  call edge-neo#highlight('CursorColumn', s:palette.none, s:palette.bg1)
 endif
-call edge#highlight('LineNr', s:palette.grey_dim, s:palette.none)
+call edge-neo#highlight('LineNr', s:palette.grey_dim, s:palette.none)
 if &diff
-  call edge#highlight('CursorLineNr', s:palette.grey, s:palette.none, 'underline')
+  call edge-neo#highlight('CursorLineNr', s:palette.grey, s:palette.none, 'underline')
 else
-  call edge#highlight('CursorLineNr', s:palette.grey, s:palette.none)
+  call edge-neo#highlight('CursorLineNr', s:palette.grey, s:palette.none)
 endif
-call edge#highlight('DiffAdd', s:palette.none, s:palette.diff_green)
-call edge#highlight('DiffChange', s:palette.none, s:palette.diff_blue)
-call edge#highlight('DiffDelete', s:palette.none, s:palette.diff_red)
-call edge#highlight('DiffText', s:palette.bg0, s:palette.blue)
-call edge#highlight('Directory', s:palette.green, s:palette.none)
-call edge#highlight('ErrorMsg', s:palette.red, s:palette.none, 'bold,underline')
-call edge#highlight('WarningMsg', s:palette.yellow, s:palette.none, 'bold')
-call edge#highlight('ModeMsg', s:palette.fg, s:palette.none, 'bold')
-call edge#highlight('MoreMsg', s:palette.blue, s:palette.none, 'bold')
-call edge#highlight('MatchParen', s:palette.none, s:palette.bg4)
-call edge#highlight('NonText', s:palette.bg4, s:palette.none)
-call edge#highlight('Whitespace', s:palette.bg4, s:palette.none)
-call edge#highlight('SpecialKey', s:palette.bg4, s:palette.none)
-call edge#highlight('Pmenu', s:palette.fg, s:palette.bg2)
-call edge#highlight('PmenuSbar', s:palette.none, s:palette.bg2)
+call edge-neo#highlight('DiffAdd', s:palette.none, s:palette.diff_green)
+call edge-neo#highlight('DiffChange', s:palette.none, s:palette.diff_blue)
+call edge-neo#highlight('DiffDelete', s:palette.none, s:palette.diff_red)
+call edge-neo#highlight('DiffText', s:palette.bg0, s:palette.blue)
+call edge-neo#highlight('Directory', s:palette.green, s:palette.none)
+call edge-neo#highlight('ErrorMsg', s:palette.red, s:palette.none, 'bold,underline')
+call edge-neo#highlight('WarningMsg', s:palette.yellow, s:palette.none, 'bold')
+call edge-neo#highlight('ModeMsg', s:palette.fg, s:palette.none, 'bold')
+call edge-neo#highlight('MoreMsg', s:palette.blue, s:palette.none, 'bold')
+call edge-neo#highlight('MatchParen', s:palette.none, s:palette.bg4)
+call edge-neo#highlight('NonText', s:palette.bg4, s:palette.none)
+call edge-neo#highlight('Whitespace', s:palette.bg4, s:palette.none)
+call edge-neo#highlight('SpecialKey', s:palette.bg4, s:palette.none)
+call edge-neo#highlight('Pmenu', s:palette.fg, s:palette.bg2)
+call edge-neo#highlight('PmenuSbar', s:palette.none, s:palette.bg2)
 if s:configuration.menu_selection_background ==# 'blue'
-  call edge#highlight('PmenuSel', s:palette.bg0, s:palette.bg_blue)
+  call edge-neo#highlight('PmenuSel', s:palette.bg0, s:palette.bg_blue)
 elseif s:configuration.menu_selection_background ==# 'green'
-  call edge#highlight('PmenuSel', s:palette.bg0, s:palette.bg_green)
+  call edge-neo#highlight('PmenuSel', s:palette.bg0, s:palette.bg_green)
 elseif s:configuration.menu_selection_background ==# 'purple'
-  call edge#highlight('PmenuSel', s:palette.bg0, s:palette.bg_purple)
+  call edge-neo#highlight('PmenuSel', s:palette.bg0, s:palette.bg_purple)
 endif
 highlight! link WildMenu PmenuSel
-call edge#highlight('PmenuThumb', s:palette.none, s:palette.bg_grey)
-call edge#highlight('NormalFloat', s:palette.fg, s:palette.bg2)
-call edge#highlight('Question', s:palette.yellow, s:palette.none)
+call edge-neo#highlight('PmenuThumb', s:palette.none, s:palette.bg_grey)
+call edge-neo#highlight('NormalFloat', s:palette.fg, s:palette.bg2)
+call edge-neo#highlight('Question', s:palette.yellow, s:palette.none)
 if s:configuration.spell_foreground ==# 'none'
-  call edge#highlight('SpellBad', s:palette.none, s:palette.none, 'undercurl', s:palette.red)
-  call edge#highlight('SpellCap', s:palette.none, s:palette.none, 'undercurl', s:palette.yellow)
-  call edge#highlight('SpellLocal', s:palette.none, s:palette.none, 'undercurl', s:palette.blue)
-  call edge#highlight('SpellRare', s:palette.none, s:palette.none, 'undercurl', s:palette.purple)
+  call edge-neo#highlight('SpellBad', s:palette.none, s:palette.none, 'undercurl', s:palette.red)
+  call edge-neo#highlight('SpellCap', s:palette.none, s:palette.none, 'undercurl', s:palette.yellow)
+  call edge-neo#highlight('SpellLocal', s:palette.none, s:palette.none, 'undercurl', s:palette.blue)
+  call edge-neo#highlight('SpellRare', s:palette.none, s:palette.none, 'undercurl', s:palette.purple)
 else
-  call edge#highlight('SpellBad', s:palette.red, s:palette.none, 'undercurl', s:palette.red)
-  call edge#highlight('SpellCap', s:palette.yellow, s:palette.none, 'undercurl', s:palette.yellow)
-  call edge#highlight('SpellLocal', s:palette.blue, s:palette.none, 'undercurl', s:palette.blue)
-  call edge#highlight('SpellRare', s:palette.purple, s:palette.none, 'undercurl', s:palette.purple)
+  call edge-neo#highlight('SpellBad', s:palette.red, s:palette.none, 'undercurl', s:palette.red)
+  call edge-neo#highlight('SpellCap', s:palette.yellow, s:palette.none, 'undercurl', s:palette.yellow)
+  call edge-neo#highlight('SpellLocal', s:palette.blue, s:palette.none, 'undercurl', s:palette.blue)
+  call edge-neo#highlight('SpellRare', s:palette.purple, s:palette.none, 'undercurl', s:palette.purple)
 endif
-call edge#highlight('StatusLine', s:palette.fg, s:palette.bg2)
-call edge#highlight('StatusLineTerm', s:palette.fg, s:palette.bg2)
-call edge#highlight('StatusLineNC', s:palette.grey, s:palette.bg1)
-call edge#highlight('StatusLineTermNC', s:palette.grey, s:palette.bg1)
-call edge#highlight('TabLine', s:palette.fg, s:palette.bg4)
-call edge#highlight('TabLineFill', s:palette.grey, s:palette.bg1)
-call edge#highlight('TabLineSel', s:palette.bg0, s:palette.bg_purple)
-call edge#highlight('VertSplit', s:palette.black, s:palette.none)
-call edge#highlight('Visual', s:palette.none, s:palette.bg3)
-call edge#highlight('VisualNOS', s:palette.none, s:palette.bg3, 'underline')
-call edge#highlight('QuickFixLine', s:palette.purple, s:palette.none, 'bold')
-call edge#highlight('Debug', s:palette.yellow, s:palette.none)
-call edge#highlight('debugPC', s:palette.bg0, s:palette.bg_green)
-call edge#highlight('debugBreakpoint', s:palette.bg0, s:palette.bg_red)
-call edge#highlight('ToolbarButton', s:palette.bg0, s:palette.bg_purple)
+call edge-neo#highlight('StatusLine', s:palette.fg, s:palette.bg2)
+call edge-neo#highlight('StatusLineTerm', s:palette.fg, s:palette.bg2)
+call edge-neo#highlight('StatusLineNC', s:palette.grey, s:palette.bg1)
+call edge-neo#highlight('StatusLineTermNC', s:palette.grey, s:palette.bg1)
+call edge-neo#highlight('TabLine', s:palette.fg, s:palette.bg4)
+call edge-neo#highlight('TabLineFill', s:palette.grey, s:palette.bg1)
+call edge-neo#highlight('TabLineSel', s:palette.bg0, s:palette.bg_purple)
+call edge-neo#highlight('VertSplit', s:palette.black, s:palette.none)
+call edge-neo#highlight('Visual', s:palette.none, s:palette.bg3)
+call edge-neo#highlight('VisualNOS', s:palette.none, s:palette.bg3, 'underline')
+call edge-neo#highlight('QuickFixLine', s:palette.purple, s:palette.none, 'bold')
+call edge-neo#highlight('Debug', s:palette.yellow, s:palette.none)
+call edge-neo#highlight('debugPC', s:palette.bg0, s:palette.bg_green)
+call edge-neo#highlight('debugBreakpoint', s:palette.bg0, s:palette.bg_red)
+call edge-neo#highlight('ToolbarButton', s:palette.bg0, s:palette.bg_purple)
 if has('nvim')
-  call edge#highlight('Substitute', s:palette.bg0, s:palette.yellow)
+  call edge-neo#highlight('Substitute', s:palette.bg0, s:palette.yellow)
   highlight! link DiagnosticFloatingError ErrorFloat
   highlight! link DiagnosticFloatingWarn WarningFloat
   highlight! link DiagnosticFloatingInfo InfoFloat
@@ -184,101 +184,101 @@ endif
 " }}}
 " Syntax: {{{
 if s:configuration.enable_italic
-  call edge#highlight('Type', s:palette.red, s:palette.none, 'italic')
-  call edge#highlight('Structure', s:palette.red, s:palette.none, 'italic')
-  call edge#highlight('StorageClass', s:palette.red, s:palette.none, 'italic')
-  call edge#highlight('Identifier', s:palette.cyan, s:palette.none, 'italic')
-  call edge#highlight('Constant', s:palette.yellow, s:palette.none, 'italic')
+  call edge-neo#highlight('Type', s:palette.red, s:palette.none, 'italic')
+  call edge-neo#highlight('Structure', s:palette.red, s:palette.none, 'italic')
+  call edge-neo#highlight('StorageClass', s:palette.red, s:palette.none, 'italic')
+  call edge-neo#highlight('Identifier', s:palette.cyan, s:palette.none, 'italic')
+  call edge-neo#highlight('Constant', s:palette.yellow, s:palette.none, 'italic')
 else
-  call edge#highlight('Type', s:palette.red, s:palette.none)
-  call edge#highlight('Structure', s:palette.red, s:palette.none)
-  call edge#highlight('StorageClass', s:palette.red, s:palette.none)
-  call edge#highlight('Identifier', s:palette.cyan, s:palette.none)
-  call edge#highlight('Constant', s:palette.yellow, s:palette.none)
+  call edge-neo#highlight('Type', s:palette.red, s:palette.none)
+  call edge-neo#highlight('Structure', s:palette.red, s:palette.none)
+  call edge-neo#highlight('StorageClass', s:palette.red, s:palette.none)
+  call edge-neo#highlight('Identifier', s:palette.cyan, s:palette.none)
+  call edge-neo#highlight('Constant', s:palette.yellow, s:palette.none)
 endif
-call edge#highlight('PreProc', s:palette.purple, s:palette.none)
-call edge#highlight('PreCondit', s:palette.purple, s:palette.none)
-call edge#highlight('Include', s:palette.purple, s:palette.none)
-call edge#highlight('Keyword', s:palette.purple, s:palette.none)
-call edge#highlight('Define', s:palette.purple, s:palette.none)
-call edge#highlight('Typedef', s:palette.purple, s:palette.none)
-call edge#highlight('Exception', s:palette.purple, s:palette.none)
-call edge#highlight('Conditional', s:palette.purple, s:palette.none)
-call edge#highlight('Repeat', s:palette.purple, s:palette.none)
-call edge#highlight('Statement', s:palette.purple, s:palette.none)
-call edge#highlight('Macro', s:palette.yellow, s:palette.none)
-call edge#highlight('Error', s:palette.red, s:palette.none)
-call edge#highlight('Label', s:palette.yellow, s:palette.none)
-call edge#highlight('Special', s:palette.yellow, s:palette.none)
-call edge#highlight('SpecialChar', s:palette.yellow, s:palette.none)
-call edge#highlight('Boolean', s:palette.green, s:palette.none)
-call edge#highlight('String', s:palette.green, s:palette.none)
-call edge#highlight('Character', s:palette.green, s:palette.none)
-call edge#highlight('Number', s:palette.green, s:palette.none)
-call edge#highlight('Float', s:palette.green, s:palette.none)
-call edge#highlight('Function', s:palette.blue, s:palette.none)
-call edge#highlight('Operator', s:palette.purple, s:palette.none)
-call edge#highlight('Title', s:palette.purple, s:palette.none, 'bold')
-call edge#highlight('Tag', s:palette.yellow, s:palette.none)
-call edge#highlight('Delimiter', s:palette.fg, s:palette.none)
+call edge-neo#highlight('PreProc', s:palette.purple, s:palette.none)
+call edge-neo#highlight('PreCondit', s:palette.purple, s:palette.none)
+call edge-neo#highlight('Include', s:palette.purple, s:palette.none)
+call edge-neo#highlight('Keyword', s:palette.purple, s:palette.none)
+call edge-neo#highlight('Define', s:palette.purple, s:palette.none)
+call edge-neo#highlight('Typedef', s:palette.purple, s:palette.none)
+call edge-neo#highlight('Exception', s:palette.purple, s:palette.none)
+call edge-neo#highlight('Conditional', s:palette.purple, s:palette.none)
+call edge-neo#highlight('Repeat', s:palette.purple, s:palette.none)
+call edge-neo#highlight('Statement', s:palette.purple, s:palette.none)
+call edge-neo#highlight('Macro', s:palette.yellow, s:palette.none)
+call edge-neo#highlight('Error', s:palette.red, s:palette.none)
+call edge-neo#highlight('Label', s:palette.yellow, s:palette.none)
+call edge-neo#highlight('Special', s:palette.yellow, s:palette.none)
+call edge-neo#highlight('SpecialChar', s:palette.yellow, s:palette.none)
+call edge-neo#highlight('Boolean', s:palette.green, s:palette.none)
+call edge-neo#highlight('String', s:palette.green, s:palette.none)
+call edge-neo#highlight('Character', s:palette.green, s:palette.none)
+call edge-neo#highlight('Number', s:palette.green, s:palette.none)
+call edge-neo#highlight('Float', s:palette.green, s:palette.none)
+call edge-neo#highlight('Function', s:palette.blue, s:palette.none)
+call edge-neo#highlight('Operator', s:palette.purple, s:palette.none)
+call edge-neo#highlight('Title', s:palette.purple, s:palette.none, 'bold')
+call edge-neo#highlight('Tag', s:palette.yellow, s:palette.none)
+call edge-neo#highlight('Delimiter', s:palette.fg, s:palette.none)
 if s:configuration.disable_italic_comment
-  call edge#highlight('Comment', s:palette.grey, s:palette.none)
-  call edge#highlight('SpecialComment', s:palette.grey, s:palette.none)
-  call edge#highlight('Todo', s:palette.red, s:palette.none)
+  call edge-neo#highlight('Comment', s:palette.grey, s:palette.none)
+  call edge-neo#highlight('SpecialComment', s:palette.grey, s:palette.none)
+  call edge-neo#highlight('Todo', s:palette.red, s:palette.none)
 else
-  call edge#highlight('Comment', s:palette.grey, s:palette.none, 'italic')
-  call edge#highlight('SpecialComment', s:palette.grey, s:palette.none, 'italic')
-  call edge#highlight('Todo', s:palette.red, s:palette.none, 'italic')
+  call edge-neo#highlight('Comment', s:palette.grey, s:palette.none, 'italic')
+  call edge-neo#highlight('SpecialComment', s:palette.grey, s:palette.none, 'italic')
+  call edge-neo#highlight('Todo', s:palette.red, s:palette.none, 'italic')
 endif
-call edge#highlight('Ignore', s:palette.grey, s:palette.none)
-call edge#highlight('Underlined', s:palette.none, s:palette.none, 'underline')
+call edge-neo#highlight('Ignore', s:palette.grey, s:palette.none)
+call edge-neo#highlight('Underlined', s:palette.none, s:palette.none, 'underline')
 " }}}
 " Predefined Highlight Groups: {{{
-call edge#highlight('Fg', s:palette.fg, s:palette.none)
-call edge#highlight('Grey', s:palette.grey, s:palette.none)
-call edge#highlight('Red', s:palette.red, s:palette.none)
-call edge#highlight('Yellow', s:palette.yellow, s:palette.none)
-call edge#highlight('Green', s:palette.green, s:palette.none)
-call edge#highlight('Cyan', s:palette.cyan, s:palette.none)
-call edge#highlight('Blue', s:palette.blue, s:palette.none)
-call edge#highlight('Purple', s:palette.purple, s:palette.none)
+call edge-neo#highlight('Fg', s:palette.fg, s:palette.none)
+call edge-neo#highlight('Grey', s:palette.grey, s:palette.none)
+call edge-neo#highlight('Red', s:palette.red, s:palette.none)
+call edge-neo#highlight('Yellow', s:palette.yellow, s:palette.none)
+call edge-neo#highlight('Green', s:palette.green, s:palette.none)
+call edge-neo#highlight('Cyan', s:palette.cyan, s:palette.none)
+call edge-neo#highlight('Blue', s:palette.blue, s:palette.none)
+call edge-neo#highlight('Purple', s:palette.purple, s:palette.none)
 if s:configuration.enable_italic
-  call edge#highlight('RedItalic', s:palette.red, s:palette.none, 'italic')
-  call edge#highlight('YellowItalic', s:palette.yellow, s:palette.none, 'italic')
-  call edge#highlight('GreenItalic', s:palette.green, s:palette.none, 'italic')
-  call edge#highlight('CyanItalic', s:palette.cyan, s:palette.none, 'italic')
-  call edge#highlight('BlueItalic', s:palette.blue, s:palette.none, 'italic')
-  call edge#highlight('PurpleItalic', s:palette.purple, s:palette.none, 'italic')
+  call edge-neo#highlight('RedItalic', s:palette.red, s:palette.none, 'italic')
+  call edge-neo#highlight('YellowItalic', s:palette.yellow, s:palette.none, 'italic')
+  call edge-neo#highlight('GreenItalic', s:palette.green, s:palette.none, 'italic')
+  call edge-neo#highlight('CyanItalic', s:palette.cyan, s:palette.none, 'italic')
+  call edge-neo#highlight('BlueItalic', s:palette.blue, s:palette.none, 'italic')
+  call edge-neo#highlight('PurpleItalic', s:palette.purple, s:palette.none, 'italic')
 else
-  call edge#highlight('RedItalic', s:palette.red, s:palette.none)
-  call edge#highlight('YellowItalic', s:palette.yellow, s:palette.none)
-  call edge#highlight('GreenItalic', s:palette.green, s:palette.none)
-  call edge#highlight('CyanItalic', s:palette.cyan, s:palette.none)
-  call edge#highlight('BlueItalic', s:palette.blue, s:palette.none)
-  call edge#highlight('PurpleItalic', s:palette.purple, s:palette.none)
+  call edge-neo#highlight('RedItalic', s:palette.red, s:palette.none)
+  call edge-neo#highlight('YellowItalic', s:palette.yellow, s:palette.none)
+  call edge-neo#highlight('GreenItalic', s:palette.green, s:palette.none)
+  call edge-neo#highlight('CyanItalic', s:palette.cyan, s:palette.none)
+  call edge-neo#highlight('BlueItalic', s:palette.blue, s:palette.none)
+  call edge-neo#highlight('PurpleItalic', s:palette.purple, s:palette.none)
 endif
-call edge#highlight('RedSign', s:palette.red, s:palette.none)
-call edge#highlight('YellowSign', s:palette.yellow, s:palette.none)
-call edge#highlight('GreenSign', s:palette.green, s:palette.none)
-call edge#highlight('CyanSign', s:palette.cyan, s:palette.none)
-call edge#highlight('BlueSign', s:palette.blue, s:palette.none)
-call edge#highlight('PurpleSign', s:palette.purple, s:palette.none)
+call edge-neo#highlight('RedSign', s:palette.red, s:palette.none)
+call edge-neo#highlight('YellowSign', s:palette.yellow, s:palette.none)
+call edge-neo#highlight('GreenSign', s:palette.green, s:palette.none)
+call edge-neo#highlight('CyanSign', s:palette.cyan, s:palette.none)
+call edge-neo#highlight('BlueSign', s:palette.blue, s:palette.none)
+call edge-neo#highlight('PurpleSign', s:palette.purple, s:palette.none)
 if s:configuration.diagnostic_text_highlight
-  call edge#highlight('ErrorText', s:palette.none, s:palette.diff_red, 'undercurl', s:palette.red)
-  call edge#highlight('WarningText', s:palette.none, s:palette.diff_yellow, 'undercurl', s:palette.yellow)
-  call edge#highlight('InfoText', s:palette.none, s:palette.diff_blue, 'undercurl', s:palette.blue)
-  call edge#highlight('HintText', s:palette.none, s:palette.diff_green, 'undercurl', s:palette.green)
+  call edge-neo#highlight('ErrorText', s:palette.none, s:palette.diff_red, 'undercurl', s:palette.red)
+  call edge-neo#highlight('WarningText', s:palette.none, s:palette.diff_yellow, 'undercurl', s:palette.yellow)
+  call edge-neo#highlight('InfoText', s:palette.none, s:palette.diff_blue, 'undercurl', s:palette.blue)
+  call edge-neo#highlight('HintText', s:palette.none, s:palette.diff_green, 'undercurl', s:palette.green)
 else
-  call edge#highlight('ErrorText', s:palette.none, s:palette.none, 'undercurl', s:palette.red)
-  call edge#highlight('WarningText', s:palette.none, s:palette.none, 'undercurl', s:palette.yellow)
-  call edge#highlight('InfoText', s:palette.none, s:palette.none, 'undercurl', s:palette.blue)
-  call edge#highlight('HintText', s:palette.none, s:palette.none, 'undercurl', s:palette.green)
+  call edge-neo#highlight('ErrorText', s:palette.none, s:palette.none, 'undercurl', s:palette.red)
+  call edge-neo#highlight('WarningText', s:palette.none, s:palette.none, 'undercurl', s:palette.yellow)
+  call edge-neo#highlight('InfoText', s:palette.none, s:palette.none, 'undercurl', s:palette.blue)
+  call edge-neo#highlight('HintText', s:palette.none, s:palette.none, 'undercurl', s:palette.green)
 endif
 if s:configuration.diagnostic_line_highlight
-  call edge#highlight('ErrorLine', s:palette.none, s:palette.diff_red)
-  call edge#highlight('WarningLine', s:palette.none, s:palette.diff_yellow)
-  call edge#highlight('InfoLine', s:palette.none, s:palette.diff_blue)
-  call edge#highlight('HintLine', s:palette.none, s:palette.diff_green)
+  call edge-neo#highlight('ErrorLine', s:palette.none, s:palette.diff_red)
+  call edge-neo#highlight('WarningLine', s:palette.none, s:palette.diff_yellow)
+  call edge-neo#highlight('InfoLine', s:palette.none, s:palette.diff_blue)
+  call edge-neo#highlight('HintLine', s:palette.none, s:palette.diff_green)
 else
   highlight clear ErrorLine
   highlight clear WarningLine
@@ -296,16 +296,16 @@ else
   highlight! link VirtualTextInfo Blue
   highlight! link VirtualTextHint Green
 endif
-call edge#highlight('ErrorFloat', s:palette.red, s:palette.bg2)
-call edge#highlight('WarningFloat', s:palette.yellow, s:palette.bg2)
-call edge#highlight('InfoFloat', s:palette.blue, s:palette.bg2)
-call edge#highlight('HintFloat', s:palette.green, s:palette.bg2)
+call edge-neo#highlight('ErrorFloat', s:palette.red, s:palette.bg2)
+call edge-neo#highlight('WarningFloat', s:palette.yellow, s:palette.bg2)
+call edge-neo#highlight('InfoFloat', s:palette.blue, s:palette.bg2)
+call edge-neo#highlight('HintFloat', s:palette.green, s:palette.bg2)
 if &diff
-  call edge#highlight('CurrentWord', s:palette.bg0, s:palette.green)
+  call edge-neo#highlight('CurrentWord', s:palette.bg0, s:palette.green)
 elseif s:configuration.current_word ==# 'grey background'
-  call edge#highlight('CurrentWord', s:palette.none, s:palette.bg2)
+  call edge-neo#highlight('CurrentWord', s:palette.none, s:palette.bg2)
 else
-  call edge#highlight('CurrentWord', s:palette.none, s:palette.none, s:configuration.current_word)
+  call edge-neo#highlight('CurrentWord', s:palette.none, s:palette.none, s:configuration.current_word)
 endif
 " }}}
 " }}}
@@ -350,12 +350,12 @@ endif
 " }}}
 " Plugins: {{{
 " nvim-treesitter/nvim-treesitter {{{
-call edge#highlight('TSStrong', s:palette.none, s:palette.none, 'bold')
-call edge#highlight('TSEmphasis', s:palette.none, s:palette.none, 'italic')
-call edge#highlight('TSUnderline', s:palette.none, s:palette.none, 'underline')
-call edge#highlight('TSNote', s:palette.bg0, s:palette.blue, 'bold')
-call edge#highlight('TSWarning', s:palette.bg0, s:palette.yellow, 'bold')
-call edge#highlight('TSDanger', s:palette.bg0, s:palette.red, 'bold')
+call edge-neo#highlight('TSStrong', s:palette.none, s:palette.none, 'bold')
+call edge-neo#highlight('TSEmphasis', s:palette.none, s:palette.none, 'italic')
+call edge-neo#highlight('TSUnderline', s:palette.none, s:palette.none, 'underline')
+call edge-neo#highlight('TSNote', s:palette.bg0, s:palette.blue, 'bold')
+call edge-neo#highlight('TSWarning', s:palette.bg0, s:palette.yellow, 'bold')
+call edge-neo#highlight('TSDanger', s:palette.bg0, s:palette.red, 'bold')
 highlight! link TSAnnotation Purple
 highlight! link TSAttribute Yellow
 highlight! link TSBoolean Green
@@ -406,7 +406,7 @@ highlight! link TSVariable RedItalic
 highlight! link TSVariableBuiltin CyanItalic
 " }}}
 " neoclide/coc.nvim {{{
-call edge#highlight('CocHoverRange', s:palette.none, s:palette.none, 'bold,underline')
+call edge-neo#highlight('CocHoverRange', s:palette.none, s:palette.none, 'bold,underline')
 highlight! link CocSemClass TSType
 highlight! link CocSemEnum TSType
 highlight! link CocSemInterface TSType
@@ -514,23 +514,23 @@ highlight! link SyntasticWarningLine WarningLine
 if !exists('g:Lf_StlColorscheme')
   let g:Lf_StlColorscheme = 'one'
 endif
-call edge#highlight('Lf_hl_match', s:palette.green, s:palette.none, 'bold')
-call edge#highlight('Lf_hl_match0', s:palette.green, s:palette.none, 'bold')
-call edge#highlight('Lf_hl_match1', s:palette.blue, s:palette.none, 'bold')
-call edge#highlight('Lf_hl_match2', s:palette.purple, s:palette.none, 'bold')
-call edge#highlight('Lf_hl_match3', s:palette.red, s:palette.none, 'bold')
-call edge#highlight('Lf_hl_match4', s:palette.yellow, s:palette.none, 'bold')
-call edge#highlight('Lf_hl_matchRefine', s:palette.cyan, s:palette.none, 'bold')
-call edge#highlight('Lf_hl_popup_normalMode', s:palette.bg0, s:palette.green, 'bold')
-call edge#highlight('Lf_hl_popup_inputMode', s:palette.bg0, s:palette.blue, 'bold')
-call edge#highlight('Lf_hl_popup_category', s:palette.fg, s:palette.bg4)
-call edge#highlight('Lf_hl_popup_nameOnlyMode', s:palette.fg, s:palette.bg3)
-call edge#highlight('Lf_hl_popup_fullPathMode', s:palette.fg, s:palette.bg3)
-call edge#highlight('Lf_hl_popup_fuzzyMode', s:palette.fg, s:palette.bg3)
-call edge#highlight('Lf_hl_popup_regexMode', s:palette.fg, s:palette.bg3)
-call edge#highlight('Lf_hl_popup_lineInfo', s:palette.purple, s:palette.bg4)
-call edge#highlight('Lf_hl_popup_total', s:palette.bg0, s:palette.purple)
-call edge#highlight('Lf_hl_popup_cursor', s:palette.bg0, s:palette.green)
+call edge-neo#highlight('Lf_hl_match', s:palette.green, s:palette.none, 'bold')
+call edge-neo#highlight('Lf_hl_match0', s:palette.green, s:palette.none, 'bold')
+call edge-neo#highlight('Lf_hl_match1', s:palette.blue, s:palette.none, 'bold')
+call edge-neo#highlight('Lf_hl_match2', s:palette.purple, s:palette.none, 'bold')
+call edge-neo#highlight('Lf_hl_match3', s:palette.red, s:palette.none, 'bold')
+call edge-neo#highlight('Lf_hl_match4', s:palette.yellow, s:palette.none, 'bold')
+call edge-neo#highlight('Lf_hl_matchRefine', s:palette.cyan, s:palette.none, 'bold')
+call edge-neo#highlight('Lf_hl_popup_normalMode', s:palette.bg0, s:palette.green, 'bold')
+call edge-neo#highlight('Lf_hl_popup_inputMode', s:palette.bg0, s:palette.blue, 'bold')
+call edge-neo#highlight('Lf_hl_popup_category', s:palette.fg, s:palette.bg4)
+call edge-neo#highlight('Lf_hl_popup_nameOnlyMode', s:palette.fg, s:palette.bg3)
+call edge-neo#highlight('Lf_hl_popup_fullPathMode', s:palette.fg, s:palette.bg3)
+call edge-neo#highlight('Lf_hl_popup_fuzzyMode', s:palette.fg, s:palette.bg3)
+call edge-neo#highlight('Lf_hl_popup_regexMode', s:palette.fg, s:palette.bg3)
+call edge-neo#highlight('Lf_hl_popup_lineInfo', s:palette.purple, s:palette.bg4)
+call edge-neo#highlight('Lf_hl_popup_total', s:palette.bg0, s:palette.purple)
+call edge-neo#highlight('Lf_hl_popup_cursor', s:palette.bg0, s:palette.green)
 highlight! link Lf_hl_cursorline Fg
 highlight! link Lf_hl_selection DiffAdd
 highlight! link Lf_hl_rgHighlight Visual
@@ -543,18 +543,18 @@ highlight! link Lf_hl_popup_blank Lf_hl_popup_window
 highlight! link Lf_hl_popup_spin Yellow
 " }}}
 " liuchengxu/vim-clap {{{
-call edge#highlight('ClapSelected', s:palette.red, s:palette.none, 'bold')
-call edge#highlight('ClapCurrentSelection', s:palette.none, s:palette.bg0, 'bold')
-call edge#highlight('ClapSpinner', s:palette.purple, s:palette.bg2, 'bold')
-call edge#highlight('ClapBlines', s:palette.fg, s:palette.none)
-call edge#highlight('ClapProviderId', s:palette.fg, s:palette.none, 'bold')
-call edge#highlight('ClapMatches1', s:palette.red, s:palette.none, 'bold')
-call edge#highlight('ClapMatches2', s:palette.yellow, s:palette.none, 'bold')
-call edge#highlight('ClapMatches3', s:palette.cyan, s:palette.none, 'bold')
-call edge#highlight('ClapMatches4', s:palette.blue, s:palette.none, 'bold')
-call edge#highlight('ClapMatches5', s:palette.purple, s:palette.none, 'bold')
-call edge#highlight('ClapFuzzyMatches', s:palette.green, s:palette.none, 'bold')
-call edge#highlight('ClapNoMatchesFound', s:palette.red, s:palette.none, 'bold')
+call edge-neo#highlight('ClapSelected', s:palette.red, s:palette.none, 'bold')
+call edge-neo#highlight('ClapCurrentSelection', s:palette.none, s:palette.bg0, 'bold')
+call edge-neo#highlight('ClapSpinner', s:palette.purple, s:palette.bg2, 'bold')
+call edge-neo#highlight('ClapBlines', s:palette.fg, s:palette.none)
+call edge-neo#highlight('ClapProviderId', s:palette.fg, s:palette.none, 'bold')
+call edge-neo#highlight('ClapMatches1', s:palette.red, s:palette.none, 'bold')
+call edge-neo#highlight('ClapMatches2', s:palette.yellow, s:palette.none, 'bold')
+call edge-neo#highlight('ClapMatches3', s:palette.cyan, s:palette.none, 'bold')
+call edge-neo#highlight('ClapMatches4', s:palette.blue, s:palette.none, 'bold')
+call edge-neo#highlight('ClapMatches5', s:palette.purple, s:palette.none, 'bold')
+call edge-neo#highlight('ClapFuzzyMatches', s:palette.green, s:palette.none, 'bold')
+call edge-neo#highlight('ClapNoMatchesFound', s:palette.red, s:palette.none, 'bold')
 highlight! link ClapInput Pmenu
 highlight! link ClapDisplay Pmenu
 highlight! link ClapPreview Pmenu
@@ -594,20 +594,20 @@ let g:fzf_colors = {
       \ }
 " }}}
 " Shougo/denite.nvim{{{
-call edge#highlight('deniteMatchedChar', s:palette.green, s:palette.none, 'bold')
-call edge#highlight('deniteMatchedRange', s:palette.green, s:palette.none, 'bold,underline')
-call edge#highlight('deniteInput', s:palette.green, s:palette.bg1, 'bold')
-call edge#highlight('deniteStatusLineNumber', s:palette.purple, s:palette.bg1)
-call edge#highlight('deniteStatusLinePath', s:palette.fg, s:palette.bg1)
+call edge-neo#highlight('deniteMatchedChar', s:palette.green, s:palette.none, 'bold')
+call edge-neo#highlight('deniteMatchedRange', s:palette.green, s:palette.none, 'bold,underline')
+call edge-neo#highlight('deniteInput', s:palette.green, s:palette.bg1, 'bold')
+call edge-neo#highlight('deniteStatusLineNumber', s:palette.purple, s:palette.bg1)
+call edge-neo#highlight('deniteStatusLinePath', s:palette.fg, s:palette.bg1)
 highlight! link deniteSelectedLine Green
 " }}}
 " kien/ctrlp.vim{{{
-call edge#highlight('CtrlPMatch', s:palette.green, s:palette.none, 'bold')
-call edge#highlight('CtrlPPrtBase', s:palette.grey, s:palette.none)
-call edge#highlight('CtrlPLinePre', s:palette.grey, s:palette.none)
-call edge#highlight('CtrlPMode1', s:palette.blue, s:palette.bg1, 'bold')
-call edge#highlight('CtrlPMode2', s:palette.bg1, s:palette.blue, 'bold')
-call edge#highlight('CtrlPStats', s:palette.grey, s:palette.bg1, 'bold')
+call edge-neo#highlight('CtrlPMatch', s:palette.green, s:palette.none, 'bold')
+call edge-neo#highlight('CtrlPPrtBase', s:palette.grey, s:palette.none)
+call edge-neo#highlight('CtrlPLinePre', s:palette.grey, s:palette.none)
+call edge-neo#highlight('CtrlPMode1', s:palette.blue, s:palette.bg1, 'bold')
+call edge-neo#highlight('CtrlPMode2', s:palette.bg1, s:palette.blue, 'bold')
+call edge-neo#highlight('CtrlPStats', s:palette.grey, s:palette.bg1, 'bold')
 highlight! link CtrlPNoEntries Red
 highlight! link CtrlPPrtCursor Blue
 " }}}
@@ -636,16 +636,16 @@ highlight! link SignifyLineChangeDelete DiffChange
 highlight! link SignifyLineDelete DiffDelete
 " }}}
 " andymass/vim-matchup {{{
-call edge#highlight('MatchParenCur', s:palette.none, s:palette.none, 'bold')
-call edge#highlight('MatchWord', s:palette.none, s:palette.none, 'underline')
-call edge#highlight('MatchWordCur', s:palette.none, s:palette.none, 'underline')
+call edge-neo#highlight('MatchParenCur', s:palette.none, s:palette.none, 'bold')
+call edge-neo#highlight('MatchWord', s:palette.none, s:palette.none, 'underline')
+call edge-neo#highlight('MatchWordCur', s:palette.none, s:palette.none, 'underline')
 " }}}
 " easymotion/vim-easymotion {{{
 highlight! link EasyMotionTarget Search
 highlight! link EasyMotionShade Grey
 " }}}
 " justinmk/vim-sneak {{{
-call edge#highlight('SneakLabelMask', s:palette.bg_purple, s:palette.bg_purple)
+call edge-neo#highlight('SneakLabelMask', s:palette.bg_purple, s:palette.bg_purple)
 highlight! link Sneak Search
 highlight! link SneakLabel Search
 highlight! link SneakScope DiffText
@@ -679,8 +679,8 @@ let g:indentLine_color_term = s:palette.grey_dim[1]
 " }}}
 " nathanaelkane/vim-indent-guides {{{
 if get(g:, 'indent_guides_auto_colors', 1) == 0
-  call edge#highlight('IndentGuidesOdd', s:palette.bg0, s:palette.bg1)
-  call edge#highlight('IndentGuidesEven', s:palette.bg0, s:palette.bg2)
+  call edge-neo#highlight('IndentGuidesOdd', s:palette.bg0, s:palette.bg1)
+  call edge-neo#highlight('IndentGuidesEven', s:palette.bg0, s:palette.bg2)
 endif
 " }}}
 " thiagoalessio/rainbow_levels.vim {{{
@@ -715,8 +715,8 @@ let g:limelight_conceal_ctermfg = s:palette.grey_dim[1]
 let g:limelight_conceal_guifg = s:palette.grey_dim[0]
 " }}}
 " unblevable/quick-scope {{{
-call edge#highlight('QuickScopePrimary', s:palette.green, s:palette.none, 'underline')
-call edge#highlight('QuickScopeSecondary', s:palette.blue, s:palette.none, 'underline')
+call edge-neo#highlight('QuickScopePrimary', s:palette.green, s:palette.none, 'underline')
+call edge-neo#highlight('QuickScopeSecondary', s:palette.blue, s:palette.none, 'underline')
 " }}}
 " APZelos/blamer.nvim {{{
 highlight! link Blamer Grey
@@ -741,8 +741,8 @@ highlight! link FloatermBorder Grey
 " }}}
 if has('nvim')
 " hrsh7th/nvim-cmp {{{
-call edge#highlight('CmpItemAbbrMatch', s:palette.blue, s:palette.none, 'bold')
-call edge#highlight('CmpItemAbbrMatchFuzzy', s:palette.blue, s:palette.none, 'bold')
+call edge-neo#highlight('CmpItemAbbrMatch', s:palette.blue, s:palette.none, 'bold')
+call edge-neo#highlight('CmpItemAbbrMatchFuzzy', s:palette.blue, s:palette.none, 'bold')
 highlight! link CmpItemAbbr Fg
 highlight! link CmpItemAbbrDeprecated Fg
 highlight! link CmpItemMenu Fg
@@ -779,7 +779,7 @@ highlight! link TroubleSource Grey
 highlight! link TroubleCode Grey
 " }}}
 " nvim-telescope/telescope.nvim {{{
-call edge#highlight('TelescopeMatching', s:palette.green, s:palette.none, 'bold')
+call edge-neo#highlight('TelescopeMatching', s:palette.green, s:palette.none, 'bold')
 highlight! link TelescopeBorder Grey
 highlight! link TelescopePromptPrefix Purple
 highlight! link TelescopeSelection DiffAdd
@@ -797,8 +797,8 @@ highlight! link GitSignsDeleteLn DiffDelete
 highlight! link GitSignsCurrentLineBlame Grey
 " }}}
 " phaazon/hop.nvim {{{
-call edge#highlight('HopNextKey', s:palette.purple, s:palette.none, 'bold')
-call edge#highlight('HopNextKey1', s:palette.blue, s:palette.none, 'bold')
+call edge-neo#highlight('HopNextKey', s:palette.purple, s:palette.none, 'bold')
+call edge-neo#highlight('HopNextKey1', s:palette.blue, s:palette.none, 'bold')
 highlight! link HopNextKey2 Blue
 highlight! link HopUnmatched Grey
 " }}}
@@ -818,23 +818,23 @@ highlight! link rainbowcol6 Purple
 highlight! link rainbowcol7 Green
 " }}}
 " romgrk/barbar.nvim {{{
-call edge#highlight('BufferCurrent', s:palette.fg, s:palette.bg4)
-call edge#highlight('BufferCurrentIndex', s:palette.fg, s:palette.bg4)
-call edge#highlight('BufferCurrentMod', s:palette.blue, s:palette.bg4)
-call edge#highlight('BufferCurrentSign', s:palette.purple, s:palette.bg4)
-call edge#highlight('BufferCurrentTarget', s:palette.red, s:palette.bg4, 'bold')
-call edge#highlight('BufferVisible', s:palette.fg, s:palette.bg2)
-call edge#highlight('BufferVisibleIndex', s:palette.fg, s:palette.bg2)
-call edge#highlight('BufferVisibleMod', s:palette.blue, s:palette.bg2)
-call edge#highlight('BufferVisibleSign', s:palette.purple, s:palette.bg2)
-call edge#highlight('BufferVisibleTarget', s:palette.yellow, s:palette.bg2, 'bold')
-call edge#highlight('BufferInactive', s:palette.grey, s:palette.bg2)
-call edge#highlight('BufferInactiveIndex', s:palette.grey, s:palette.bg2)
-call edge#highlight('BufferInactiveMod', s:palette.grey, s:palette.bg2)
-call edge#highlight('BufferInactiveSign', s:palette.grey_dim, s:palette.bg2)
-call edge#highlight('BufferInactiveTarget', s:palette.yellow, s:palette.bg2, 'bold')
-call edge#highlight('BufferTabpages', s:palette.bg0, s:palette.blue, 'bold')
-call edge#highlight('BufferTabpageFill', s:palette.bg0, s:palette.bg0)
+call edge-neo#highlight('BufferCurrent', s:palette.fg, s:palette.bg4)
+call edge-neo#highlight('BufferCurrentIndex', s:palette.fg, s:palette.bg4)
+call edge-neo#highlight('BufferCurrentMod', s:palette.blue, s:palette.bg4)
+call edge-neo#highlight('BufferCurrentSign', s:palette.purple, s:palette.bg4)
+call edge-neo#highlight('BufferCurrentTarget', s:palette.red, s:palette.bg4, 'bold')
+call edge-neo#highlight('BufferVisible', s:palette.fg, s:palette.bg2)
+call edge-neo#highlight('BufferVisibleIndex', s:palette.fg, s:palette.bg2)
+call edge-neo#highlight('BufferVisibleMod', s:palette.blue, s:palette.bg2)
+call edge-neo#highlight('BufferVisibleSign', s:palette.purple, s:palette.bg2)
+call edge-neo#highlight('BufferVisibleTarget', s:palette.yellow, s:palette.bg2, 'bold')
+call edge-neo#highlight('BufferInactive', s:palette.grey, s:palette.bg2)
+call edge-neo#highlight('BufferInactiveIndex', s:palette.grey, s:palette.bg2)
+call edge-neo#highlight('BufferInactiveMod', s:palette.grey, s:palette.bg2)
+call edge-neo#highlight('BufferInactiveSign', s:palette.grey_dim, s:palette.bg2)
+call edge-neo#highlight('BufferInactiveTarget', s:palette.yellow, s:palette.bg2, 'bold')
+call edge-neo#highlight('BufferTabpages', s:palette.bg0, s:palette.blue, 'bold')
+call edge-neo#highlight('BufferTabpageFill', s:palette.bg0, s:palette.bg0)
 " }}}
 " rcarriga/nvim-notify {{{
 highlight! link NotifyERRORBorder Red
@@ -854,8 +854,8 @@ highlight! link NotifyDEBUGTitle Grey
 highlight! link NotifyTRACETitle Purple
 " }}}
 " rcarriga/nvim-dap-ui {{{
-call edge#highlight('DapUIModifiedValue', s:palette.cyan, s:palette.none, 'bold')
-call edge#highlight('DapUIBreakpointsCurrentLine', s:palette.green, s:palette.none, 'bold')
+call edge-neo#highlight('DapUIModifiedValue', s:palette.cyan, s:palette.none, 'bold')
+call edge-neo#highlight('DapUIBreakpointsCurrentLine', s:palette.green, s:palette.none, 'bold')
 highlight! link DapUIScope Cyan
 highlight! link DapUIType Purple
 highlight! link DapUIDecoration Cyan
@@ -871,10 +871,10 @@ highlight! link DapUIBreakpointsPath Cyan
 highlight! link DapUIBreakpointsInfo Green
 " }}}
 " glepnir/lspsaga.nvim {{{
-call edge#highlight('LspFloatWinBorder', s:palette.bg0, s:palette.bg0)
-call edge#highlight('LspSagaDiagnosticHeader', s:palette.yellow, s:palette.none, 'bold')
-call edge#highlight('LspSagaCodeActionTitle', s:palette.blue, s:palette.none, 'bold')
-call edge#highlight('DefinitionPreviewTitle', s:palette.purple, s:palette.none, 'bold')
+call edge-neo#highlight('LspFloatWinBorder', s:palette.bg0, s:palette.bg0)
+call edge-neo#highlight('LspSagaDiagnosticHeader', s:palette.yellow, s:palette.none, 'bold')
+call edge-neo#highlight('LspSagaCodeActionTitle', s:palette.blue, s:palette.none, 'bold')
+call edge-neo#highlight('DefinitionPreviewTitle', s:palette.purple, s:palette.none, 'bold')
 highlight! link LspSagaDiagnosticBorder Yellow
 highlight! link LspSagaDiagnosticTruncateLine Yellow
 highlight! link LspSagaRenameBorder Blue
@@ -914,27 +914,27 @@ highlight! link diffIndexLine Yellow
 " }}}
 " }}}
 " Generate the `after/syntax` directory based on the comment tags in this file.
-" For example, the content between `syn_begin: sh/zsh` and `syn_end` will be placed in `after/syntax/sh/edge.vim` and `after/syntax/zsh/edge.vim`.
-if edge#syn_exists(s:path) " If the syntax files exist.
+" For example, the content between `syn_begin: sh/zsh` and `syn_end` will be placed in `after/syntax/sh/edge-neo.vim` and `after/syntax/zsh/edge-neo.vim`.
+if edge-neo#syn_exists(s:path) " If the syntax files exist.
   if s:configuration.better_performance
-    if !edge#syn_newest(s:path, s:last_modified) " Regenerate if it's not up to date.
-      call edge#syn_clean(s:path, 0)
-      call edge#syn_gen(s:path, s:last_modified, 'update')
+    if !edge-neo#syn_newest(s:path, s:last_modified) " Regenerate if it's not up to date.
+      call edge-neo#syn_clean(s:path, 0)
+      call edge-neo#syn_gen(s:path, s:last_modified, 'update')
     endif
     finish
   else
-    call edge#syn_clean(s:path, 1)
+    call edge-neo#syn_clean(s:path, 1)
   endif
 else
   if s:configuration.better_performance
-    call edge#syn_gen(s:path, s:last_modified, 'generate')
+    call edge-neo#syn_gen(s:path, s:last_modified, 'generate')
     finish
   endif
 endif
 " syn_begin: vim-plug {{{
 " https://github.com/junegunn/vim-plug
-call edge#highlight('plug1', s:palette.purple, s:palette.none, 'bold')
-call edge#highlight('plugNumber', s:palette.green, s:palette.none, 'bold')
+call edge-neo#highlight('plug1', s:palette.purple, s:palette.none, 'bold')
+call edge-neo#highlight('plugNumber', s:palette.green, s:palette.none, 'bold')
 highlight! link plug2 Cyan
 highlight! link plugBracket Blue
 highlight! link plugName Green
@@ -947,7 +947,7 @@ highlight! link plugRelDate Grey
 highlight! link plugStar Purple
 highlight! link plugUpdate Cyan
 highlight! link plugDeleted Grey
-highlight! link plugEdge Purple
+highlight! link plugedge-neo Purple
 " syn_end }}}
 " syn_begin: coctree {{{
 " https://github.com/neoclide/coc.nvim
@@ -1144,7 +1144,7 @@ highlight! link QuickmenuHeader Purple
 " syn_end }}}
 " syn_begin: undotree {{{
 " https://github.com/mbbill/undotree
-call edge#highlight('UndotreeSavedBig', s:palette.red, s:palette.none, 'bold')
+call edge-neo#highlight('UndotreeSavedBig', s:palette.red, s:palette.none, 'bold')
 highlight! link UndotreeNode Blue
 highlight! link UndotreeNodeCurrent Purple
 highlight! link UndotreeSeq Green
@@ -1179,16 +1179,16 @@ highlight! link DashboardFooter Red
 " syn_end }}}
 " syn_begin: markdown {{{
 " builtin: {{{
-call edge#highlight('markdownH1', s:palette.purple, s:palette.none, 'bold')
-call edge#highlight('markdownH2', s:palette.red, s:palette.none, 'bold')
-call edge#highlight('markdownH3', s:palette.blue, s:palette.none, 'bold')
-call edge#highlight('markdownH4', s:palette.yellow, s:palette.none, 'bold')
-call edge#highlight('markdownH5', s:palette.green, s:palette.none, 'bold')
-call edge#highlight('markdownH6', s:palette.cyan, s:palette.none, 'bold')
-call edge#highlight('markdownUrl', s:palette.green, s:palette.none, 'underline')
-call edge#highlight('markdownItalic', s:palette.none, s:palette.none, 'italic')
-call edge#highlight('markdownBold', s:palette.none, s:palette.none, 'bold')
-call edge#highlight('markdownItalicDelimiter', s:palette.grey, s:palette.none, 'italic')
+call edge-neo#highlight('markdownH1', s:palette.purple, s:palette.none, 'bold')
+call edge-neo#highlight('markdownH2', s:palette.red, s:palette.none, 'bold')
+call edge-neo#highlight('markdownH3', s:palette.blue, s:palette.none, 'bold')
+call edge-neo#highlight('markdownH4', s:palette.yellow, s:palette.none, 'bold')
+call edge-neo#highlight('markdownH5', s:palette.green, s:palette.none, 'bold')
+call edge-neo#highlight('markdownH6', s:palette.cyan, s:palette.none, 'bold')
+call edge-neo#highlight('markdownUrl', s:palette.green, s:palette.none, 'underline')
+call edge-neo#highlight('markdownItalic', s:palette.none, s:palette.none, 'italic')
+call edge-neo#highlight('markdownBold', s:palette.none, s:palette.none, 'bold')
+call edge-neo#highlight('markdownItalicDelimiter', s:palette.grey, s:palette.none, 'italic')
 highlight! link markdownCode Green
 highlight! link markdownCodeBlock Green
 highlight! link markdownCodeDelimiter Green
@@ -1208,9 +1208,9 @@ highlight! link markdownBoldDelimiter Grey
 highlight! link markdownId Green
 " }}}
 " vim-markdown: https://github.com/gabrielelana/vim-markdown{{{
-call edge#highlight('mkdURL', s:palette.green, s:palette.none, 'underline')
-call edge#highlight('mkdInlineURL', s:palette.green, s:palette.none, 'underline')
-call edge#highlight('mkdItalic', s:palette.grey, s:palette.none, 'italic')
+call edge-neo#highlight('mkdURL', s:palette.green, s:palette.none, 'underline')
+call edge-neo#highlight('mkdInlineURL', s:palette.green, s:palette.none, 'underline')
+call edge-neo#highlight('mkdItalic', s:palette.grey, s:palette.none, 'italic')
 highlight! link mkdCodeDelimiter Green
 highlight! link mkdCode Green
 highlight! link mkdBold Grey
@@ -1223,16 +1223,16 @@ highlight! link mkdId Green
 " }}}
 " syn_end }}}
 " syn_begin: vimwiki {{{
-call edge#highlight('VimwikiHeader1', s:palette.purple, s:palette.none, 'bold')
-call edge#highlight('VimwikiHeader2', s:palette.red, s:palette.none, 'bold')
-call edge#highlight('VimwikiHeader3', s:palette.blue, s:palette.none, 'bold')
-call edge#highlight('VimwikiHeader4', s:palette.yellow, s:palette.none, 'bold')
-call edge#highlight('VimwikiHeader5', s:palette.green, s:palette.none, 'bold')
-call edge#highlight('VimwikiHeader6', s:palette.cyan, s:palette.none, 'bold')
-call edge#highlight('VimwikiLink', s:palette.blue, s:palette.none, 'underline')
-call edge#highlight('VimwikiItalic', s:palette.none, s:palette.none, 'italic')
-call edge#highlight('VimwikiBold', s:palette.none, s:palette.none, 'bold')
-call edge#highlight('VimwikiUnderline', s:palette.none, s:palette.none, 'underline')
+call edge-neo#highlight('VimwikiHeader1', s:palette.purple, s:palette.none, 'bold')
+call edge-neo#highlight('VimwikiHeader2', s:palette.red, s:palette.none, 'bold')
+call edge-neo#highlight('VimwikiHeader3', s:palette.blue, s:palette.none, 'bold')
+call edge-neo#highlight('VimwikiHeader4', s:palette.yellow, s:palette.none, 'bold')
+call edge-neo#highlight('VimwikiHeader5', s:palette.green, s:palette.none, 'bold')
+call edge-neo#highlight('VimwikiHeader6', s:palette.cyan, s:palette.none, 'bold')
+call edge-neo#highlight('VimwikiLink', s:palette.blue, s:palette.none, 'underline')
+call edge-neo#highlight('VimwikiItalic', s:palette.none, s:palette.none, 'italic')
+call edge-neo#highlight('VimwikiBold', s:palette.none, s:palette.none, 'bold')
+call edge-neo#highlight('VimwikiUnderline', s:palette.none, s:palette.none, 'underline')
 highlight! link VimwikiList Red
 highlight! link VimwikiTag Purple
 highlight! link VimwikiCode Green
@@ -1245,11 +1245,11 @@ highlight! link VimwikiNoExistsLink Red
 " syn_end }}}
 " syn_begin: rst {{{
 " builtin: https://github.com/marshallward/vim-restructupurpletext{{{
-call edge#highlight('rstStandaloneHyperlink', s:palette.yellow, s:palette.none, 'underline')
-call edge#highlight('rstEmphasis', s:palette.none, s:palette.none, 'italic')
-call edge#highlight('rstStrongEmphasis', s:palette.none, s:palette.none, 'bold')
-call edge#highlight('rstStandaloneHyperlink', s:palette.red, s:palette.none, 'underline')
-call edge#highlight('rstHyperlinkTarget', s:palette.red, s:palette.none, 'underline')
+call edge-neo#highlight('rstStandaloneHyperlink', s:palette.yellow, s:palette.none, 'underline')
+call edge-neo#highlight('rstEmphasis', s:palette.none, s:palette.none, 'italic')
+call edge-neo#highlight('rstStrongEmphasis', s:palette.none, s:palette.none, 'bold')
+call edge-neo#highlight('rstStandaloneHyperlink', s:palette.red, s:palette.none, 'underline')
+call edge-neo#highlight('rstHyperlinkTarget', s:palette.red, s:palette.none, 'underline')
 highlight! link rstSubstitutionReference Red
 highlight! link rstInterpretedTextOrHyperlinkReference Blue
 highlight! link rstTableLines Grey
@@ -1290,20 +1290,20 @@ highlight! link texMathEnvArgName Green
 " syn_end }}}
 " syn_begin: html/markdown/javascriptreact/typescriptreact {{{
 " builtin: https://notabug.org/jorgesumle/vim-html-syntax{{{
-call edge#highlight('htmlH1', s:palette.purple, s:palette.none, 'bold')
-call edge#highlight('htmlH2', s:palette.red, s:palette.none, 'bold')
-call edge#highlight('htmlH3', s:palette.blue, s:palette.none, 'bold')
-call edge#highlight('htmlH4', s:palette.yellow, s:palette.none, 'bold')
-call edge#highlight('htmlH5', s:palette.green, s:palette.none, 'bold')
-call edge#highlight('htmlH6', s:palette.cyan, s:palette.none, 'bold')
-call edge#highlight('htmlLink', s:palette.none, s:palette.none, 'underline')
-call edge#highlight('htmlBold', s:palette.none, s:palette.none, 'bold')
-call edge#highlight('htmlBoldUnderline', s:palette.none, s:palette.none, 'bold,underline')
-call edge#highlight('htmlBoldItalic', s:palette.none, s:palette.none, 'bold,italic')
-call edge#highlight('htmlBoldUnderlineItalic', s:palette.none, s:palette.none, 'bold,underline,italic')
-call edge#highlight('htmlUnderline', s:palette.none, s:palette.none, 'underline')
-call edge#highlight('htmlUnderlineItalic', s:palette.none, s:palette.none, 'underline,italic')
-call edge#highlight('htmlItalic', s:palette.none, s:palette.none, 'italic')
+call edge-neo#highlight('htmlH1', s:palette.purple, s:palette.none, 'bold')
+call edge-neo#highlight('htmlH2', s:palette.red, s:palette.none, 'bold')
+call edge-neo#highlight('htmlH3', s:palette.blue, s:palette.none, 'bold')
+call edge-neo#highlight('htmlH4', s:palette.yellow, s:palette.none, 'bold')
+call edge-neo#highlight('htmlH5', s:palette.green, s:palette.none, 'bold')
+call edge-neo#highlight('htmlH6', s:palette.cyan, s:palette.none, 'bold')
+call edge-neo#highlight('htmlLink', s:palette.none, s:palette.none, 'underline')
+call edge-neo#highlight('htmlBold', s:palette.none, s:palette.none, 'bold')
+call edge-neo#highlight('htmlBoldUnderline', s:palette.none, s:palette.none, 'bold,underline')
+call edge-neo#highlight('htmlBoldItalic', s:palette.none, s:palette.none, 'bold,italic')
+call edge-neo#highlight('htmlBoldUnderlineItalic', s:palette.none, s:palette.none, 'bold,underline,italic')
+call edge-neo#highlight('htmlUnderline', s:palette.none, s:palette.none, 'underline')
+call edge-neo#highlight('htmlUnderlineItalic', s:palette.none, s:palette.none, 'underline,italic')
+call edge-neo#highlight('htmlItalic', s:palette.none, s:palette.none, 'italic')
 highlight! link htmlTag Purple
 highlight! link htmlEndTag Purple
 highlight! link htmlTagN PurpleItalic
@@ -1830,7 +1830,7 @@ highlight! link pythonCoding Grey
 highlight! link pythonDot Grey
 " }}}
 " semshi: https://github.com/numirias/semshi{{{
-call edge#highlight('semshiUnresolved', s:palette.cyan, s:palette.none, 'undercurl')
+call edge-neo#highlight('semshiUnresolved', s:palette.cyan, s:palette.none, 'undercurl')
 highlight! link semshiImported TSInclude
 highlight! link semshiParameter TSParameter
 highlight! link semshiParameterUnused Grey
@@ -2149,7 +2149,7 @@ highlight! link ps1BuiltIn RedItalic
 " }}}
 " syn_end }}}
 " syn_begin: vim {{{
-call edge#highlight('vimCommentTitle', s:palette.grey, s:palette.none, 'bold')
+call edge-neo#highlight('vimCommentTitle', s:palette.grey, s:palette.none, 'bold')
 highlight! link vimLet Purple
 highlight! link vimFunction Blue
 highlight! link vimIsCommand Fg
@@ -2301,7 +2301,7 @@ highlight! link yamlString Green
 highlight! link yamlKeyValueDelimiter Grey
 " syn_end }}}
 " syn_begin: toml {{{
-call edge#highlight('tomlTable', s:palette.purple, s:palette.none, 'bold')
+call edge-neo#highlight('tomlTable', s:palette.purple, s:palette.none, 'bold')
 highlight! link tomlKey Red
 highlight! link tomlBoolean Yellow
 highlight! link tomlString Green
@@ -2318,17 +2318,17 @@ highlight! link gitcommitArrow Grey
 highlight! link gitcommitFile Blue
 " syn_end }}}
 " syn_begin: dosini {{{
-call edge#highlight('dosiniHeader', s:palette.purple, s:palette.none, 'bold')
+call edge-neo#highlight('dosiniHeader', s:palette.purple, s:palette.none, 'bold')
 highlight! link dosiniLabel Red
 highlight! link dosiniValue Blue
 highlight! link dosiniNumber Blue
 " syn_end }}}
 " syn_begin: help {{{
-call edge#highlight('helpNote', s:palette.yellow, s:palette.none, 'bold')
-call edge#highlight('helpHeadline', s:palette.purple, s:palette.none, 'bold')
-call edge#highlight('helpHeader', s:palette.blue, s:palette.none, 'bold')
-call edge#highlight('helpURL', s:palette.blue, s:palette.none, 'underline')
-call edge#highlight('helpHyperTextEntry', s:palette.red, s:palette.none, 'bold')
+call edge-neo#highlight('helpNote', s:palette.yellow, s:palette.none, 'bold')
+call edge-neo#highlight('helpHeadline', s:palette.purple, s:palette.none, 'bold')
+call edge-neo#highlight('helpHeader', s:palette.blue, s:palette.none, 'bold')
+call edge-neo#highlight('helpURL', s:palette.blue, s:palette.none, 'underline')
+call edge-neo#highlight('helpHyperTextEntry', s:palette.red, s:palette.none, 'bold')
 highlight! link helpHyperTextJump Red
 highlight! link helpCommand Cyan
 highlight! link helpExample Green
